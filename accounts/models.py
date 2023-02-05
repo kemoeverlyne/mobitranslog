@@ -1,9 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin, Permission
 
-
 class Department(models.Model):
-    """Model representing a department in the company"""
+    """ Model representing a department in the company """
     name = models.CharField(max_length=255)
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -79,6 +78,13 @@ class User(AbstractBaseUser, PermissionsMixin):
         related_name='users_in_group',
         blank=True,
         help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.'
+    )
+    departments = models.ManyToManyField(
+        Department,
+        related_name='users_in_department',
+        blank=True,
+        help_text="user will get all permissions granted to this department"
+        
     )
     user_permissions = models.ManyToManyField(
         Permission, related_name='users_with_permission',
