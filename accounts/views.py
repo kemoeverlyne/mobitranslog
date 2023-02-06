@@ -42,3 +42,18 @@ def forgot_password(request):
     else:
         form = ForgotPasswordForm()
     return render(request, 'forgot_password.html', {'form': form})
+
+def landing(request):
+  slides = [
+    {
+      'img_src': 'mobitranslog\static\img\1920x1080\01.jpg',
+      'title': 'Hi-End Solutions',
+      'description': 'Lorem ipsum dolor amet consectetur adipiscing dolore magna aliqua enim minim estudiat veniam siad venumus dolore',
+    },
+    {
+      'img_src': 'img/1920x1080/02.jpg',
+      'title': 'Personal Approach',
+      'description': 'Lorem ipsum dolor amet consectetur adipiscing dolore magna aliqua enim minim estudiat veniam siad venumus dolore',
+    },
+  ]
+  return render(request, 'landing.html', {'slides': slides})
