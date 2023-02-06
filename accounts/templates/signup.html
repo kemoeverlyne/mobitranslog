@@ -1,4 +1,4 @@
-{{% load static %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,9 +31,9 @@
     <link href="{% static 'css/nucleo-svg.css' %}" rel="stylesheet" />
     <!-- CSS Files -->
     <link
-      id="pagestyle"
-      href="{% static 'css/corporate-ui-dashboard.css?v=1.0.0' %}"
       rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/corporate-ui-dashboard.css' %}?v=1.0.0"
     />
   </head>
 
@@ -86,7 +86,9 @@
                 >
                   <div
                     class="oblique-image position-absolute d-flex fixed-top ms-auto h-100 z-index-0 bg-cover me-n8"
-                    style="background-image: url('../img/image-sign-up.jpg')"
+                    style="
+                      background-image: url({% static 'img/image-sign-up.jpg' %});
+                    "
                   >
                     <div class="my-auto text-start max-width-350 ms-7">
                       <h1 class="mt-3 text-white font-weight-bolder">
@@ -116,7 +118,7 @@
                       Nice to meet you! Please enter your details.
                     </p>
                   </div>
-                  <div class="card-body">
+                <div class="card-body">
                     <form method="post">
                       {% csrf_token %} {{ form.as_p }}
                       <div class="form-check form-check-info text-left mb-0">
@@ -165,6 +167,7 @@
         </div>
       </section>
     </main>
+
     <!--   Core JS Files   -->
 
     <script src="{% static 'js/core/popper.min.js' %}"></script>

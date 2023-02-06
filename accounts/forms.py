@@ -1,14 +1,22 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from .models import User
+from .models import User,Department
 
 class SignUpForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
-    password_confirm = forms.CharField(widget=forms.PasswordInput)
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    password_confirm = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    departments = forms.ModelMultipleChoiceField(queryset=Department.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))
+
+
 
     class Meta:
         model = User
-        fields = ['name', 'email', 'groups','departments' ]
+        fields = ['name', 'email','departments' ]
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.TextInput(attrs={'class': 'form-control'})
+        }
+        
 
     def clean_name(self):
         name = self.cleaned_data['name']

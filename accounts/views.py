@@ -9,7 +9,6 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            messages.success(request, f'Account created for {username}!')
             return redirect('home')
         
     else:
